@@ -98,15 +98,41 @@ The agent will:
 
 ---
 
-### Optional: Start Test UI
+## Start Test UI (Browser Testing)
 
-```bash
+The UI is served using FastAPI and allows you to test the voice agent
+directly from your browser.
+
+### Step 1 --- Open Terminal
+
+``` bash
+cd revrag-voice-agent
+venv\Scripts\activate   # Windows
+```
+
+### Step 2 --- Start FastAPI
+
+``` bash
 uvicorn app.api:app --reload
 ```
 
-Open:
+Open: http://127.0.0.1:8000
 
-http://127.0.0.1:8000
+### Important
+
+Run in two terminals:
+
+Terminal 1:
+
+``` bash
+python app/main.py
+```
+
+Terminal 2:
+
+``` bash
+uvicorn app.api:app --reload
+```
 
 The UI allows:
 
