@@ -46,7 +46,7 @@ Room Playback
 ### 1. Clone Repository
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/SumanKumar5/revrag-voice-agent.git
 cd revrag-voice-agent
 ```
 
@@ -176,16 +176,6 @@ The agent plays:
 "Are you still there?"
 
 The reminder is triggered once per silence window and does not loop.
-
----
-
-## Latency Tracking
-
-Latency is measured from:
-
-STT start → TTS ready
-
-Displayed in the optional UI.
 
 ---
 
