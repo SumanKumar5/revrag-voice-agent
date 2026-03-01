@@ -211,8 +211,25 @@ The reminder is triggered once per silence window and does not loop.
 - LiveKit Python SDK
 - LiveKit API SDK (JWT generation)
 - Deepgram REST API (STT + TTS)
-- FastAPI (optional UI)
+- FastAPI 
 - Asyncio
+
+---
+
+## SDKs Used
+
+- livekit (RTC SDK)
+- livekit-api (JWT / AccessToken generation)
+- FastAPI (HTTP server for UI)
+- httpx (Async REST calls to Deepgram)
+- numpy (Audio processing)
+
+---
+
+## 🌐 External Services
+
+- LiveKit Cloud – Real-time WebRTC infrastructure
+- Deepgram API – Speech-to-Text (Nova-2) and Text-to-Speech (Aura)
 
 ---
 
