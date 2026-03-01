@@ -226,7 +226,7 @@ The reminder is triggered once per silence window and does not loop.
 
 ---
 
-## 🌐 External Services
+## External Services
 
 - LiveKit Cloud – Real-time WebRTC infrastructure
 - Deepgram API – Speech-to-Text (Nova-2) and Text-to-Speech (Aura)
