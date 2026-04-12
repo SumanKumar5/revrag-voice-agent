@@ -16,13 +16,6 @@
 ![Cartesia](https://img.shields.io/badge/Cartesia-Sonic--2-F97316?style=for-the-badge&logoColor=white)
 ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 
-<br/>
-
-![Version](https://img.shields.io/badge/version-2.0.0-blue?style=flat-square)
-![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)
-![Status](https://img.shields.io/badge/status-production--ready-brightgreen?style=flat-square)
-
-</div>
 
 ---
 
