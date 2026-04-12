@@ -17,6 +17,8 @@
 ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 
 
+</div>
+
 ---
 
 ## What It Does
