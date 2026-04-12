@@ -1,30 +1,46 @@
- 
+<div align="center">
+
 # Real-Time Voice Agent
 
-A production-grade real-time AI voice agent built with LiveKit Agents v1.5, featuring speech-to-text, LLM response generation, text-to-speech, adaptive interruption handling, and silence detection — with a polished Next.js frontend.
+**A production-grade, full-stack AI voice agent powered by LiveKit, Deepgram, GPT-4o mini, and Cartesia — with a polished Next.js frontend.**
+
+<br/>
 
 ![LiveKit](https://img.shields.io/badge/LiveKit-Agents_v1.5-FF3B30?style=for-the-badge&logo=webrtc&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Next.js](https://img.shields.io/badge/Next.js-15-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+
 ![Deepgram](https://img.shields.io/badge/Deepgram-Nova--3-13EF93?style=for-the-badge&logoColor=white)
 ![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4o_mini-412991?style=for-the-badge&logo=openai&logoColor=white)
 ![Cartesia](https://img.shields.io/badge/Cartesia-Sonic--2-F97316?style=for-the-badge&logoColor=white)
 ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 
+<br/>
+
+![Version](https://img.shields.io/badge/version-2.0.0-blue?style=flat-square)
+![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)
+![Status](https://img.shields.io/badge/status-production--ready-brightgreen?style=flat-square)
+
+</div>
+
 ---
 
-## Overview
+## What It Does
 
-This project implements a full-stack real-time voice agent that:
+This project is a real-time AI voice agent that joins a LiveKit room and interacts with users entirely through audio. It implements a full STT → LLM → TTS pipeline with production-grade interruption handling and silence detection.
 
-- Joins a LiveKit room as an audio-only participant
-- Listens to user speech via Deepgram Nova-3 STT (streaming)
-- Generates responses using GPT-4o mini via LiveKit Inference
-- Converts responses to speech using Cartesia Sonic-2 TTS
-- Handles interruptions natively using LiveKit's adaptive interruption model
-- Sends a gentle reminder after 20 seconds of user silence
-- Displays a live conversation transcript in the browser UI
+| Capability | Details |
+|---|---|
+| Speech-to-Text | Deepgram Nova-3 — streaming, low-latency |
+| Language Model | GPT-4o mini via LiveKit Inference |
+| Text-to-Speech | Cartesia Sonic-2 — natural, expressive voice |
+| Interruption Handling | Adaptive ML-based interruption detection |
+| Silence Detection | 20s away timeout with gentle reminder |
+| VAD | Silero neural voice activity detection |
+| Turn Detection | MultilingualModel — transformer-based semantic EOU |
+| Noise Cancellation | LiveKit BVC (background voice cancellation) |
+| Live Transcript | Real-time conversation display in the browser |
 
 ---
 
@@ -33,29 +49,27 @@ This project implements a full-stack real-time voice agent that:
 ```
 Browser (Next.js)
      │
-     ├── GET /api/token  →  Next.js Token Server  →  LiveKit Cloud
+     ├── GET /api/token ──► Next.js Token Server ──► LiveKit Cloud
      │
-     └── WebRTC (audio)  ──────────────────────────────────────────┐
-                                                                    │
-                                                          LiveKit Room
-                                                                    │
-                                                        Python Agent (backend)
-                                                                    │
-                                          ┌─────────────────────────┤
-                                          │                         │
-                                   Silero VAD              MultilingualModel
-                                   (voice activity)        (turn detection)
+     └── WebRTC (audio) ──────────────────────────────────────────►  LiveKit Room
+                                                                           │
+                                                               Python Agent (backend)
+                                                                           │
+                                          ┌────────────────────────────────┤
+                                          │                                │
+                                   Silero VAD                    MultilingualModel
+                                (voice activity)                  (turn detection)
                                           │
-                                  Deepgram Nova-3
-                                   (STT streaming)
+                                 Deepgram Nova-3
+                                 (STT — streaming)
                                           │
-                                  GPT-4o mini LLM
-                                  (via LiveKit Inference)
+                                 GPT-4o mini LLM
+                              (via LiveKit Inference)
                                           │
-                                  Cartesia Sonic-2
+                                 Cartesia Sonic-2
                                       (TTS)
                                           │
-                                   Audio back to room
+                              Audio published back to room
 ```
 
 ---
@@ -63,26 +77,26 @@ Browser (Next.js)
 ## Tech Stack
 
 ### Backend
-| Layer | Technology |
-|---|---|
-| Agent Framework | LiveKit Agents v1.5.1 |
-| Speech-to-Text | Deepgram Nova-3 (streaming) |
-| LLM | OpenAI GPT-4o mini |
-| Text-to-Speech | Cartesia Sonic-2 |
-| Voice Activity Detection | Silero VAD (neural) |
-| Turn Detection | LiveKit MultilingualModel (transformer-based) |
-| Noise Cancellation | LiveKit BVC |
-| Package Manager | uv |
-| Language | Python 3.12 |
+| Layer | Technology | Version |
+|---|---|---|
+| Agent Framework | LiveKit Agents | v1.5.1 |
+| Speech-to-Text | Deepgram Nova-3 | streaming |
+| LLM | OpenAI GPT-4o mini | via LiveKit Inference |
+| Text-to-Speech | Cartesia Sonic-2 | via LiveKit Inference |
+| VAD | Silero VAD | neural |
+| Turn Detection | LiveKit MultilingualModel | transformer-based |
+| Noise Cancellation | LiveKit BVC | — |
+| Package Manager | uv | v0.11+ |
+| Language | Python | 3.12 |
 
 ### Frontend
-| Layer | Technology |
-|---|---|
-| Framework | Next.js 15 (App Router) |
-| Language | TypeScript 5 |
-| Styling | Tailwind CSS 4 |
-| LiveKit SDK | @livekit/components-react |
-| Token Server | Next.js API Route |
+| Layer | Technology | Version |
+|---|---|---|
+| Framework | Next.js (App Router) | 15 |
+| Language | TypeScript | 5 |
+| Styling | Tailwind CSS | 4 |
+| LiveKit SDK | @livekit/components-react | latest |
+| Token Server | Next.js API Route | built-in |
 
 ---
 
@@ -90,24 +104,25 @@ Browser (Next.js)
 
 ```
 voice-agent/
+│
 ├── backend/
 │   ├── agent.py              
-│   ├── .env                  
-│   ├── .env.example          
-│   ├── pyproject.toml        
+│   ├── .env.example      
+│   ├── pyproject.toml    
+│   ├── uv.lock           
 │   └── README.md
 │
 └── frontend/
     ├── app/
-    │   ├── page.tsx           
-    │   ├── layout.tsx         
+    │   ├── page.tsx     
+    │   ├── layout.tsx      
     │   └── api/token/
-    │       └── route.ts       
+    │       └── route.ts      
     ├── components/
-    │   ├── VoiceAgent.tsx     
+    │   ├── VoiceAgent.tsx    
     │   └── Transcript.tsx     
-    ├── .env.local             
-    └── .env.example
+    ├── .env.example           
+    └── package.json
 ```
 
 ---
@@ -118,8 +133,9 @@ voice-agent/
 
 - Python 3.12+
 - Node.js 18+
-- [uv](https://astral.sh/uv) package manager
+- [`uv`](https://astral.sh/uv) package manager
 - [LiveKit Cloud](https://livekit.io) account (free tier)
+- [Deepgram](https://deepgram.com) account (free $200 credit)
 
 ---
 
@@ -127,14 +143,15 @@ voice-agent/
 
 ```bash
 cd backend
+
+# Install dependencies
 uv install
-```
 
-Copy the environment template and fill in your credentials:
-
-```bash
+# Copy and fill in credentials
 cp .env.example .env
 ```
+
+Edit `.env`:
 
 ```env
 LIVEKIT_URL=wss://your-project.livekit.cloud
@@ -143,7 +160,7 @@ LIVEKIT_API_SECRET=your_api_secret
 DEEPGRAM_API_KEY=your_deepgram_api_key
 ```
 
-Download required models:
+Download required ML models:
 
 ```bash
 uv run python agent.py download-files
@@ -161,14 +178,15 @@ uv run python agent.py dev
 
 ```bash
 cd frontend
+
+# Install dependencies
 npm install
-```
 
-Copy the environment template and fill in your credentials:
-
-```bash
+# Copy and fill in credentials
 cp .env.example .env.local
 ```
+
+Edit `.env.local`:
 
 ```env
 LIVEKIT_API_KEY=your_api_key
@@ -184,45 +202,51 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000)
 
+> Run both backend and frontend simultaneously in separate terminals.
+
 ---
 
 ## Advanced Behavior
 
-### A. No Overlap / Interruption Handling
+### A — No Overlap / Interruption Handling
 
-The agent uses LiveKit Agents v1.5's native adaptive interruption system:
+The agent uses LiveKit Agents v1.5's native adaptive interruption system, requiring no manual state management:
 
-- `allow_interruptions=True` — agent stops speaking the moment user speaks
-- `min_interruption_duration=0.5s` — filters out brief sounds and noise
-- `resume_false_interruption=True` — agent resumes if the interruption was accidental
-- `aec_warmup_duration=3.0s` — prevents echo from triggering false interruptions on startup
-- `MultilingualModel` turn detection — transformer-based semantic model that understands when the user has truly finished their turn, reducing premature responses
+- **`allow_interruptions=True`** — agent stops speaking the instant the user speaks
+- **`min_interruption_duration=0.5s`** — filters brief sounds and background noise
+- **`resume_false_interruption=True`** — agent automatically resumes if interruption was accidental (e.g. cough, backchannel)
+- **`aec_warmup_duration=3.0s`** — prevents echo from triggering false interruptions on startup
+- **`MultilingualModel`** — transformer-based semantic end-of-utterance detector, understands conversational context
 
-State machine managed natively by `AgentSession`:
+Native state machine managed by `AgentSession`:
 
 ```
-User state:   listening → speaking → listening → away
-Agent state:  idle → thinking → speaking → idle
+User:   listening ──► speaking ──► listening ──► away
+Agent:  idle ──► thinking ──► speaking ──► idle
 ```
 
-### B. Silence Handling
+### B — Silence Handling
 
-- `user_away_timeout=20.0` — SDK marks user as `away` after 20 seconds of silence
-- A `user_state_changed` event listener fires when state becomes `away`
+- **`user_away_timeout=20.0`** — SDK marks user as `away` after 20 seconds of silence
+- A `user_state_changed` event listener fires when state transitions to `away`
 - Agent sends a single gentle reminder via `session.generate_reply()`
-- Does not loop — resets only when user speaks again
+- One-shot — does not loop or repeat until user speaks again
 
 ---
 
-## Credentials
+## Environment Variables
 
-All credentials are managed via environment variables and are never committed to version control.
+| Variable | Where | Description |
+|---|---|---|
+| `LIVEKIT_URL` | backend + frontend | LiveKit Cloud WebSocket URL |
+| `LIVEKIT_API_KEY` | backend + frontend | LiveKit API Key |
+| `LIVEKIT_API_SECRET` | backend + frontend | LiveKit API Secret |
+| `DEEPGRAM_API_KEY` | backend | Deepgram API Key for STT |
 
-| Variable | Description |
-|---|---|
-| `LIVEKIT_URL` | LiveKit Cloud WebSocket URL |
-| `LIVEKIT_API_KEY` | LiveKit API Key |
-| `LIVEKIT_API_SECRET` | LiveKit API Secret |
-| `DEEPGRAM_API_KEY` | Deepgram API Key (for STT) |
+> All credentials are managed via `.env` files and are never committed to version control.
 
 ---
+
+## License
+
+MIT © [Suman Kumar](https://github.com/SumanKumar5)
