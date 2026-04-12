@@ -203,7 +203,7 @@ Open [http://localhost:3000](http://localhost:3000)
 
 ## Advanced Behavior
 
-### A — No Overlap / Interruption Handling
+### A- No Overlap / Interruption Handling
 
 The agent uses LiveKit Agents v1.5's native adaptive interruption system, requiring no manual state management:
 
@@ -220,7 +220,7 @@ User:   listening ──► speaking ──► listening ──► away
 Agent:  idle ──► thinking ──► speaking ──► idle
 ```
 
-### B — Silence Handling
+### B- Silence Handling
 
 - **`user_away_timeout=20.0`** — SDK marks user as `away` after 20 seconds of silence
 - A `user_state_changed` event listener fires when state transitions to `away`
